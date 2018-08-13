@@ -1,10 +1,19 @@
 'use strict';
 
 module.exports.hello = (event, context, callback) => {
+
+  var message = "HELLO WORLD";
+  const name = event.queryStringParameters && event.queryStringParameters.name;
+  if (name !== null) {
+    message = 'Hello ' + name;
+  }
+
+
+
   const response = {
     statusCode: 200,
     body: JSON.stringify({
-      message: 'Go Serverless v1.0! Your function executed successfully!',
+      message: message,
       input: event,
     }),
   };
